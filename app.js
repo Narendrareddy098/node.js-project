@@ -4,7 +4,7 @@ const port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
   res.send({
-    message: "✅ Response from REST API!",
+    message: "HELLO Suppy I LOVE U ❤️!",
     time: new Date().toISOString(),
     random: Math.floor(Math.random() * 100)
   });
