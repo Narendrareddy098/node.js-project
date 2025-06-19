@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node
+  template:
+    metadata:
+      labels:
+        app: node
+    spec:
+      containers:
+      - name: node-app
+        image: narenreddy1/node
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+        env:
+        - name: MESSAGE
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: MESSAGE
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+      imagePullSecrets:
+      - name: regcred
+      restartPolicy: Always
+
