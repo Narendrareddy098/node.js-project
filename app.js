@@ -1,13 +1,15 @@
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
-const message = process.env.MESSAGE || 'Hello code push from naren!';
 
 app.get('/', (req, res) => {
-  res.send({ message });
+  res.send({
+    message: "✅ Response from REST API!",
+    time: new Date().toISOString(),
+    random: Math.floor(Math.random() * 100)
+  });
 });
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
-
