@@ -18,12 +18,7 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
-        env:
-        - name: MESSAGE
-          valueFrom:
-            configMapKeyRef:
-              name: app-config
-              key: MESSAGE
+        
         readinessProbe:
           httpGet:
             path: /
