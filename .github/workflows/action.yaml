@@ -34,10 +34,10 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ap-south-1
+        aws-region: us-east-1
 
     - name: Update Kubeconfig
-      run: aws eks update-kubeconfig --name eksnaren
+      run: aws eks update-kubeconfig --name nareneks
 
     - name: Apply Kubernetes Manifests
       run: kubectl apply -f k8s/
